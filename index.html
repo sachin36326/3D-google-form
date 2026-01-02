@@ -1,0 +1,566 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🚀 Sachin's 3D Google Form</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📋</text></svg>">
+</head>
+<body>
+    <!-- 3D Background -->
+    <div class="background-3d"></div>
+    
+    <!-- Main Container -->
+    <div class="container-3d">
+        <!-- Header -->
+        <header class="header-3d">
+            <div class="logo-3d">
+                <div class="logo-icon">
+                    <i class="fas fa-cube"></i>
+                    <i class="fas fa-form"></i>
+                </div>
+                <h1>Sachin's <span class="gradient-text">3D Form</span></h1>
+                <p class="tagline">Advanced form builder with immersive 3D experience</p>
+            </div>
+            
+            <nav class="nav-3d">
+                <button class="nav-btn active" data-section="forms">
+                    <i class="fas fa-list-alt"></i> My Forms
+                </button>
+                <button class="nav-btn" data-section="create">
+                    <i class="fas fa-plus-circle"></i> Create
+                </button>
+                <button class="nav-btn" data-section="responses">
+                    <i class="fas fa-chart-bar"></i> Responses
+                </button>
+                <button class="nav-btn" data-section="templates">
+                    <i class="fas fa-layer-group"></i> Templates
+                </button>
+                <button class="nav-btn" data-section="settings">
+                    <i class="fas fa-cog"></i> Settings
+                </button>
+            </nav>
+        </header>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Forms Dashboard -->
+            <section class="content-section active" id="forms-section">
+                <div class="section-header">
+                    <h2><i class="fas fa-rocket"></i> Dashboard</h2>
+                    <div class="header-actions">
+                        <button class="btn-3d btn-primary" id="createFormBtn">
+                            <i class="fas fa-plus"></i> Create New Form
+                        </button>
+                        <button class="btn-3d" id="importFormBtn">
+                            <i class="fas fa-file-import"></i> Import
+                        </button>
+                    </div>
+                </div>
+
+                <div class="stats-cards">
+                    <div class="stat-card-3d">
+                        <div class="stat-icon">
+                            <i class="fas fa-inbox"></i>
+                        </div>
+                        <div class="stat-content">
+                            <h3 id="totalResponses">0</h3>
+                            <p>Total Responses</p>
+                        </div>
+                        <div class="stat-sparkline"></div>
+                    </div>
+                    
+                    <div class="stat-card-3d">
+                        <div class="stat-icon">
+                            <i class="fas fa-check-circle"></i>
+                        </div>
+                        <div class="stat-content">
+                            <h3 id="activeForms">0</h3>
+                            <p>Active Forms</p>
+                        </div>
+                        <div class="stat-sparkline"></div>
+                    </div>
+                    
+                    <div class="stat-card-3d">
+                        <div class="stat-icon">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <div class="stat-content">
+                            <h3 id="totalViews">0</h3>
+                            <p>Total Views</p>
+                        </div>
+                        <div class="stat-sparkline"></div>
+                    </div>
+                    
+                    <div class="stat-card-3d">
+                        <div class="stat-icon">
+                            <i class="fas fa-chart-line"></i>
+                        </div>
+                        <div class="stat-content">
+                            <h3 id="completionRate">0%</h3>
+                            <p>Completion Rate</p>
+                        </div>
+                        <div class="stat-sparkline"></div>
+                    </div>
+                </div>
+
+                <!-- Forms Grid -->
+                <div class="forms-grid" id="formsGrid">
+                    <!-- Forms will be dynamically added here -->
+                    <div class="no-forms">
+                        <div class="empty-state-3d">
+                            <i class="fas fa-file-alt"></i>
+                            <h3>No forms yet</h3>
+                            <p>Create your first 3D form to get started</p>
+                            <button class="btn-3d btn-primary" id="createFirstForm">
+                                <i class="fas fa-magic"></i> Create First Form
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Form Creation Section -->
+            <section class="content-section" id="create-section">
+                <div class="section-header">
+                    <h2><i class="fas fa-wand-magic-sparkles"></i> Create New Form</h2>
+                    <div class="header-actions">
+                        <button class="btn-3d" id="previewFormBtn">
+                            <i class="fas fa-eye"></i> Preview
+                        </button>
+                        <button class="btn-3d btn-primary" id="saveFormBtn">
+                            <i class="fas fa-save"></i> Save Form
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Form Builder -->
+                <div class="form-builder-3d">
+                    <div class="builder-sidebar">
+                        <h3><i class="fas fa-shapes"></i> Form Elements</h3>
+                        <div class="elements-list">
+                            <div class="element-item" draggable="true" data-type="text">
+                                <i class="fas fa-font"></i>
+                                <span>Short Answer</span>
+                            </div>
+                            <div class="element-item" draggable="true" data-type="paragraph">
+                                <i class="fas fa-paragraph"></i>
+                                <span>Paragraph</span>
+                            </div>
+                            <div class="element-item" draggable="true" data-type="multiple-choice">
+                                <i class="fas fa-dot-circle"></i>
+                                <span>Multiple Choice</span>
+                            </div>
+                            <div class="element-item" draggable="true" data-type="checkbox">
+                                <i class="fas fa-check-square"></i>
+                                <span>Checkboxes</span>
+                            </div>
+                            <div class="element-item" draggable="true" data-type="dropdown">
+                                <i class="fas fa-caret-square-down"></i>
+                                <span>Dropdown</span>
+                            </div>
+                            <div class="element-item" draggable="true" data-type="file">
+                                <i class="fas fa-file-upload"></i>
+                                <span>File Upload</span>
+                            </div>
+                            <div class="element-item" draggable="true" data-type="linear-scale">
+                                <i class="fas fa-sliders-h"></i>
+                                <span>Linear Scale</span>
+                            </div>
+                            <div class="element-item" draggable="true" data-type="date">
+                                <i class="fas fa-calendar-alt"></i>
+                                <span>Date</span>
+                            </div>
+                            <div class="element-item" draggable="true" data-type="time">
+                                <i class="fas fa-clock"></i>
+                                <span>Time</span>
+                            </div>
+                            <div class="element-item" draggable="true" data-type="section">
+                                <i class="fas fa-layer-group"></i>
+                                <span>Section</span>
+                            </div>
+                        </div>
+
+                        <h3><i class="fas fa-palette"></i> Theme</h3>
+                        <div class="theme-picker">
+                            <input type="color" id="primaryColor" value="#6a11cb">
+                            <div class="theme-presets">
+                                <div class="theme-preset" data-theme="purple"></div>
+                                <div class="theme-preset" data-theme="blue"></div>
+                                <div class="theme-preset" data-theme="red"></div>
+                                <div class="theme-preset" data-theme="green"></div>
+                                <div class="theme-preset" data-theme="dark"></div>
+                            </div>
+                        </div>
+
+                        <h3><i class="fas fa-cube"></i> 3D Effects</h3>
+                        <div class="effects-controls">
+                            <label class="switch-3d">
+                                <input type="checkbox" id="enable3D" checked>
+                                <span class="slider-3d"></span>
+                                <span>Enable 3D</span>
+                            </label>
+                            
+                            <label class="switch-3d">
+                                <input type="checkbox" id="enableAnimations" checked>
+                                <span class="slider-3d"></span>
+                                <span>Animations</span>
+                            </label>
+                            
+                            <label class="switch-3d">
+                                <input type="checkbox" id="enableParticles" checked>
+                                <span class="slider-3d"></span>
+                                <span>Particles</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Form Preview Area -->
+                    <div class="form-preview-area" id="dropZone">
+                        <div class="form-header-preview">
+                            <input type="text" class="form-title-input" placeholder="Untitled Form" value="Sachin's 3D Form">
+                            <textarea class="form-description-input" placeholder="Form description">This is an advanced 3D form created with Sachin's Google Form builder.</textarea>
+                        </div>
+
+                        <div class="form-elements" id="formElements">
+                            <!-- Form elements will be added here dynamically -->
+                            <div class="form-element-placeholder">
+                                <i class="fas fa-arrow-down"></i>
+                                <p>Drag form elements here or click to add</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Properties Panel -->
+                    <div class="properties-panel" id="propertiesPanel">
+                        <h3><i class="fas fa-sliders-h"></i> Properties</h3>
+                        <div class="properties-content" id="propertiesContent">
+                            <div class="no-selection">
+                                <i class="fas fa-mouse-pointer"></i>
+                                <p>Select an element to edit its properties</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Responses Section -->
+            <section class="content-section" id="responses-section">
+                <div class="section-header">
+                    <h2><i class="fas fa-chart-pie"></i> Responses</h2>
+                    <div class="header-actions">
+                        <button class="btn-3d" id="exportCSV">
+                            <i class="fas fa-file-csv"></i> Export CSV
+                        </button>
+                        <button class="btn-3d" id="exportJSON">
+                            <i class="fas fa-file-code"></i> Export JSON
+                        </button>
+                        <button class="btn-3d btn-danger" id="clearResponses">
+                            <i class="fas fa-trash"></i> Clear All
+                        </button>
+                    </div>
+                </div>
+
+                <div class="responses-container">
+                    <div class="responses-stats">
+                        <div class="response-chart">
+                            <canvas id="responseChart"></canvas>
+                        </div>
+                        <div class="response-summary">
+                            <h3>Response Summary</h3>
+                            <div class="summary-item">
+                                <span>Total Responses:</span>
+                                <strong id="responseCount">0</strong>
+                            </div>
+                            <div class="summary-item">
+                                <span>Today:</span>
+                                <strong id="todayResponses">0</strong>
+                            </div>
+                            <div class="summary-item">
+                                <span>Average Time:</span>
+                                <strong id="avgTime">0s</strong>
+                            </div>
+                            <div class="summary-item">
+                                <span>Completion Rate:</span>
+                                <strong id="responseRate">0%</strong>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="responses-table-container">
+                        <table class="responses-table-3d" id="responsesTable">
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>Timestamp</th>
+                                    <th>Respondent</th>
+                                    <th>Email</th>
+                                    <th>Duration</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="responsesBody">
+                                <!-- Responses will be added here -->
+                                <tr class="no-responses">
+                                    <td colspan="6">
+                                        <div class="empty-state-3d">
+                                            <i class="fas fa-inbox"></i>
+                                            <p>No responses yet</p>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Templates Section -->
+            <section class="content-section" id="templates-section">
+                <div class="section-header">
+                    <h2><i class="fas fa-th-large"></i> Form Templates</h2>
+                </div>
+
+                <div class="templates-grid">
+                    <div class="template-card-3d" data-template="contact">
+                        <div class="template-preview">
+                            <i class="fas fa-address-card"></i>
+                        </div>
+                        <div class="template-info">
+                            <h3>Contact Form</h3>
+                            <p>Collect contact information</p>
+                            <button class="btn-3d btn-sm use-template">Use Template</button>
+                        </div>
+                    </div>
+
+                    <div class="template-card-3d" data-template="survey">
+                        <div class="template-preview">
+                            <i class="fas fa-poll"></i>
+                        </div>
+                        <div class="template-info">
+                            <h3>Survey</h3>
+                            <p>Collect feedback and opinions</p>
+                            <button class="btn-3d btn-sm use-template">Use Template</button>
+                        </div>
+                    </div>
+
+                    <div class="template-card-3d" data-template="quiz">
+                        <div class="template-preview">
+                            <i class="fas fa-graduation-cap"></i>
+                        </div>
+                        <div class="template-info">
+                            <h3>Quiz</h3>
+                            <p>Create interactive quizzes</p>
+                            <button class="btn-3d btn-sm use-template">Use Template</button>
+                        </div>
+                    </div>
+
+                    <div class="template-card-3d" data-template="registration">
+                        <div class="template-preview">
+                            <i class="fas fa-user-plus"></i>
+                        </div>
+                        <div class="template-info">
+                            <h3>Registration</h3>
+                            <p>Event or user registration</p>
+                            <button class="btn-3d btn-sm use-template">Use Template</button>
+                        </div>
+                    </div>
+
+                    <div class="template-card-3d" data-template="feedback">
+                        <div class="template-preview">
+                            <i class="fas fa-comment-alt"></i>
+                        </div>
+                        <div class="template-info">
+                            <h3>Feedback</h3>
+                            <p>Collect user feedback</p>
+                            <button class="btn-3d btn-sm use-template">Use Template</button>
+                        </div>
+                    </div>
+
+                    <div class="template-card-3d" data-template="order">
+                        <div class="template-preview">
+                            <i class="fas fa-shopping-cart"></i>
+                        </div>
+                        <div class="template-info">
+                            <h3>Order Form</h3>
+                            <p>Product or service orders</p>
+                            <button class="btn-3d btn-sm use-template">Use Template</button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Settings Section -->
+            <section class="content-section" id="settings-section">
+                <div class="section-header">
+                    <h2><i class="fas fa-sliders-h"></i> Settings</h2>
+                </div>
+
+                <div class="settings-grid">
+                    <div class="settings-card-3d">
+                        <h3><i class="fas fa-bell"></i> Notifications</h3>
+                        <div class="settings-controls">
+                            <label class="switch-3d">
+                                <input type="checkbox" id="emailNotifications" checked>
+                                <span class="slider-3d"></span>
+                                <span>Email notifications</span>
+                            </label>
+                            <label class="switch-3d">
+                                <input type="checkbox" id="responseAlerts">
+                                <span class="slider-3d"></span>
+                                <span>Response alerts</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="settings-card-3d">
+                        <h3><i class="fas fa-shield-alt"></i> Security</h3>
+                        <div class="settings-controls">
+                            <label class="switch-3d">
+                                <input type="checkbox" id="requireLogin">
+                                <span class="slider-3d"></span>
+                                <span>Require login</span>
+                            </label>
+                            <label class="switch-3d">
+                                <input type="checkbox" id="captchaEnabled">
+                                <span class="slider-3d"></span>
+                                <span>Enable CAPTCHA</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="settings-card-3d">
+                        <h3><i class="fas fa-database"></i> Data Storage</h3>
+                        <div class="settings-controls">
+                            <label class="switch-3d">
+                                <input type="checkbox" id="localStorage" checked>
+                                <span class="slider-3d"></span>
+                                <span>Local storage</span>
+                            </label>
+                            <label class="switch-3d">
+                                <input type="checkbox" id="exportAuto">
+                                <span class="slider-3d"></span>
+                                <span>Auto export</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="settings-card-3d">
+                        <h3><i class="fas fa-paint-brush"></i> Appearance</h3>
+                        <div class="theme-selector">
+                            <select id="themeSelector" class="select-3d">
+                                <option value="light">Light Theme</option>
+                                <option value="dark">Dark Theme</option>
+                                <option value="auto">Auto (System)</option>
+                            </select>
+                            <button class="btn-3d btn-sm" id="resetTheme">Reset</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="settings-card-3d full-width">
+                    <h3><i class="fas fa-cogs"></i> Advanced Settings</h3>
+                    <div class="advanced-settings">
+                        <div class="setting-item">
+                            <label for="responseLimit">Response Limit</label>
+                            <input type="number" id="responseLimit" class="input-3d" min="0" placeholder="0 for unlimited">
+                        </div>
+                        <div class="setting-item">
+                            <label for="timeLimit">Time Limit (minutes)</label>
+                            <input type="number" id="timeLimit" class="input-3d" min="0" placeholder="0 for no limit">
+                        </div>
+                        <div class="setting-item">
+                            <label for="emailReceipt">Email Receipt</label>
+                            <input type="email" id="emailReceipt" class="input-3d" placeholder="Email for receipt">
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <!-- Footer -->
+        <footer class="footer-3d">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>Sachin's 3D Form</h4>
+                    <p>Advanced form builder with immersive 3D experience</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Features</h4>
+                    <ul>
+                        <li>Drag & Drop Builder</li>
+                        <li>3D Visual Effects</li>
+                        <li>Local Storage</li>
+                        <li>Real-time Analytics</li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Contact</h4>
+                    <p><i class="fas fa-envelope"></i> support@sachinform.com</p>
+                    <div class="social-links">
+                        <button class="social-btn"><i class="fab fa-twitter"></i></button>
+                        <button class="social-btn"><i class="fab fa-github"></i></button>
+                        <button class="social-btn"><i class="fab fa-linkedin"></i></button>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>© 2024 Sachin's Google Form. All rights reserved.</p>
+                <p class="version">v1.0.0 | Built with <i class="fas fa-heart"></i> and 3D magic</p>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Modals -->
+    <div class="modal-3d" id="formModal">
+        <div class="modal-content-3d">
+            <div class="modal-header">
+                <h3><i class="fas fa-external-link-alt"></i> Share Form</h3>
+                <button class="modal-close">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="share-options">
+                    <div class="share-option">
+                        <label>Form Link:</label>
+                        <div class="copy-input">
+                            <input type="text" id="formLink" readonly>
+                            <button class="btn-3d btn-sm" id="copyLinkBtn">
+                                <i class="fas fa-copy"></i> Copy
+                            </button>
+                        </div>
+                    </div>
+                    <div class="share-option">
+                        <label>Embed Code:</label>
+                        <textarea id="embedCode" readonly></textarea>
+                        <button class="btn-3d btn-sm" id="copyEmbedBtn">
+                            <i class="fas fa-code"></i> Copy Code
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal-3d" id="responseModal">
+        <div class="modal-content-3d">
+            <div class="modal-header">
+                <h3><i class="fas fa-eye"></i> View Response</h3>
+                <button class="modal-close">&times;</button>
+            </div>
+            <div class="modal-body" id="responseDetails">
+                <!-- Response details will be shown here -->
+            </div>
+        </div>
+    </div>
+
+    <!-- 3D Particles Canvas -->
+    <canvas id="particlesCanvas"></canvas>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
